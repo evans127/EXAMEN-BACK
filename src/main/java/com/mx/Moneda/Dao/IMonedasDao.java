@@ -8,4 +8,8 @@ import com.mx.Moneda.Dominio.Moneda;
 
 public interface IMonedasDao  extends JpaRepository<Moneda, Integer>{
 public List<Moneda>findByStatusIgnoringCaseContaining(String status);
+
+
+
+
 }

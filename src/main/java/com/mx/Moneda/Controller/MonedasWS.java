@@ -1,5 +1,6 @@
 package com.mx.Moneda.Controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,34 @@ private MonedasService service;
 			 return ResponseEntity.ok(monedas);
 		 }
 	 }
+	 @GetMapping(path = "/filtro")
+	 public ResponseEntity<?> filtro( @RequestParam(required = false) String status,  @RequestParam(required = false) Integer numCia) {
+	  if (numCia != null && status != null && !status.isEmpty()) {
+	         Moneda moneda = service.buscar(numCia);
+	         if (moneda != null && moneda.getStatus().equalsIgnoreCase(status)) {
+	             return ResponseEntity.ok(moneda);
+	         } else {
+	             return ResponseEntity.notFound().build(); 
+	         }
+	     }
+	  if (numCia != null) {
+	         Moneda moneda = service.buscar(numCia);
+	         if (moneda != null) {
+	             return ResponseEntity.ok(moneda);
+	         }
+	     }
+	     
+	     if (status != null && !status.isEmpty()) {
+	         List<Moneda> monedas = service.byStatus(status);
+	         if (!monedas.isEmpty()) {
+	             return ResponseEntity.ok(monedas); 
+	         }
+	     }
+	     return ResponseEntity.notFound().build();
+	 }
+
+	 
+
 	 
 	}
 

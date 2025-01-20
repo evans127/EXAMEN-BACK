@@ -2,12 +2,14 @@ package com.mx.Moneda.Service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.mx.Moneda.Dao.IMonedasDao;
 import com.mx.Moneda.Dominio.Moneda;
+
 
 @Service
 public class MonedasService {
@@ -33,4 +35,13 @@ public class MonedasService {
 	public List<Moneda>byStatus(String status){
 		return dao.findByStatusIgnoringCaseContaining(status);
 	}
+	
+	
+	
 	}
+
+	
+	
+
+
+
